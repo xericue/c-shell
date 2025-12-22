@@ -2,27 +2,41 @@
 
 int main(int argc, char *argv[]) 
 {
-	// main process calls fork()
-	(void)argc; // typecast argc variable to void to tell compiler that argc is unused
-	int status;
+    // so apparently we need to divide the argv vector into a bunch of tokens
+    // and then parse that and then execute with execvp 
 
-	// this is a child process/fork() creates a child 
+    // THREE MAIN COMPONENTS TO A SHELL
+    // 1. infinite loop that keeps asking the user for input until swayed away
+    // 2. tokenization of input string
+    // 3. logic that actually runs the commands (often involves creating a child process and execvp to execute it)
+
+    char *line;
+    // pointer to an address in memory of declared as "line"
+
+    // read, parse, execute, loop (or read evaluate print loop) - REPL
+    // infinite loop
+    while (1) {
+        // 1. get line
+
+        stream = fopen(argv[1], "r");
+        line = get_line(); // TODO
+
+        
+
+        // 2. get tokens
+        // 3. execute dat
+
+
+
+        if 
+    }
+
+
 	if (fork() == 0) {
-		// fork() - a process creates a copy of itself
-		// its a system call - a program's asking of its operating system for a "service" (here, forking)	
-		
-			
-		// this execvp replaces the current "process image" (snapshot of a program's state at this current moment)
-		// with a new process image
-		// execute vector path - takes an array (vector) of arguments and then uses PATH to find the executable
-		// i.e. its actually Digging in my computer/PATH and creating a new executable/process image
-		//
-		// execvp ls - the actual executable that i wanna launch - 
-		// and pass in "argv" which contains the elements that i want
 		execvp(argv[1], argv + 1);
 	}
 
 	wait(&status);
 
-    return EXIT_SUCCESS; // macro from stdlib.h which is just 0
+    return EXIT_SUCCESS;
 }
