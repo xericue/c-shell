@@ -16,19 +16,14 @@
 // all terminal control sequences 
 // i.e. \033[0m is to "reset special formatting"
 
-#define p(...) printf(__VA_ARGS_)
+#define p(...) printf(__VA_ARGS__)
 // shortcut for printing stuff
 
 char *get_line(void) {
-    // so getline stores the address of what was read from "stream" into line
-    // line is called a "buffer"
-    // size_t n is the size of the buffer
-
-    // all of them are pointers because we actually want to change the value of each of the passed in
-    // variables - not just work with a copy of each of them
     char *buffer; // character pointer
-    size_t bufsize; // "unsigned integer" type/guaranteed to be big enough to store size
-    // of any object in memory in bytes    
+    size_t bufsize;
+
+    p("$<YEAAAAAAAAAAAAAAAAA>");
 
     buffer = NULL; // getline "will take care of it"
 
@@ -37,13 +32,12 @@ char *get_line(void) {
     // &buffer = address of buffer variable
     if (getline(&buffer, &bufsize, stdin) == -1) // error handling
     {
+        buffer = NULL; // printing NULL is causing a seg fault here since its a ptr to an empty string here
         if (feof(stdin))
             p(RED"[EOF]"RST);
 
         else
             p(RED"Getline failed"RST);
-
-            p("%s\n", buffer); //TODO
     }
     return buffer;
 }
