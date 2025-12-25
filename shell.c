@@ -1,5 +1,7 @@
 #include "shell.h"
 
+char *get_line(void);
+
 int main(int argc, char *argv[]) 
 {
     // so apparently we need to divide the argv vector into a bunch of tokens
