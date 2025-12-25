@@ -9,8 +9,15 @@
 #define Y "\033[1;33m"
 #define G "\033[1;32m"
 #define C "\033[1;36m"
+#define MAG "\033[1;35m"
 #define RED "\033[1;31m"
 #define RST "\033[0m"
+
+// all terminal control sequences 
+// i.e. \033[0m is to "reset special formatting"
+
+#define p(...) printf(__VA_ARGS_)
+// shortcut for printing stuff
 
 char *get_line(void) {
     // so getline stores the address of what was read from "stream" into line
@@ -30,15 +37,15 @@ char *get_line(void) {
     // &buffer = address of buffer variable
     if (getline(&buffer, &bufsize, stdin) == -1) // error handling
     {
-        if (feof(stdin)) {
-            printf("[EOF]");
-        }
+        if (feof(stdin))
+            p(RED"[EOF]"RST);
 
-        else {
-            printf("Getline failed");
-        }
+        else
+            p(RED"Getline failed"RST);
+
+            p("%s\n", buffer); //TODO
     }
-    return 
+    return buffer;
 }
 
 #endif
