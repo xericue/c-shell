@@ -19,13 +19,27 @@
 #define p(...) printf(__VA_ARGS__)
 // shortcut for printing stuff
 
+void char *Getcwd(char *buffer, size_t size) {
+    // pointer to pathname is returned to getcwd, NULL otherwose
+    if (NULL = getcwd(buffer, size)) {
+        perror(RED"getcwd failed"RST);
+    }
+}
+
 char *get_line(void) {
     char *buffer; // character pointer
     size_t bufsize;
-
-    p("$<YEAAAAAAAAAAAAAAAAA>");
+    char current_working_directory[BUFSIZ]; //bufsiz is like 1 kb macro
 
     buffer = NULL; // getline "will take care of it"
+
+    Getcwd(cwd, sizeof(cwd));
+
+    // "are we interactive mode" or is this a script
+    // if (isatty(fileno(stdin))) {}
+
+    p("$<YEAAAAAAAAAAAAAAAAA> %s dsfjsdfshdfhs", buffer);
+
 
     // getline is gonna return the number of characters written excluding NUL terminator
 

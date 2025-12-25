@@ -1,6 +1,7 @@
 #include "shell.h"
 
 char *get_line(void);
+void char *Getcwd(char *buffer, size_t size);
 
 int main(int argc, char *argv[]) 
 {
@@ -24,7 +25,6 @@ int main(int argc, char *argv[])
         line = get_line(); // TODO
         
         p("%s\n", line); //to do?
-        pause();
         
 
         // 2. get tokens w/ gettok
