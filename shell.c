@@ -1,5 +1,8 @@
 #include "shell.h"
 
+char *get_line(void);
+void char *Getcwd(char *buffer, size_t size);
+
 int main(int argc, char *argv[]) 
 {
     // so apparently we need to divide the argv vector into a bunch of tokens
@@ -18,25 +21,23 @@ int main(int argc, char *argv[])
     while (1) {
         // 1. get line
 
-        stream = fopen(argv[1], "r");
+        // stream = fopen(argv[1], "r");
         line = get_line(); // TODO
-
+        
+        p("%s\n", line); //to do?
         
 
-        // 2. get tokens
-        // 3. execute dat
+        // 2. get tokens w/ gettok
+        // 3. execute!!!
 
-
-
-        if 
     }
 
 
-	if (fork() == 0) {
-		execvp(argv[1], argv + 1);
-	}
+	// if (fork() == 0) {
+	// 	execvp(argv[1], argv + 1);
+	// }
 
-	wait(&status);
+	// wait(&status);
 
     return EXIT_SUCCESS;
 }

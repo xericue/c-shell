@@ -6,18 +6,54 @@
 # include <unistd.h>
 # include <sys/wait.h>
 
-char *get_line(char *line, size_t *n, FILE *stream) {
-    // so getline stores the address of what was read from "stream" into line
-    // line is called a "buffer"
-    // size_t n is the size of the buffer
+#define Y "\033[1;33m"
+#define G "\033[1;32m"
+#define C "\033[1;36m"
+#define MAG "\033[1;35m"
+#define RED "\033[1;31m"
+#define RST "\033[0m"
 
-    // all of them are pointers because we actually want to change the value of each of the passed in
-    // variables - not just work with a copy of each of them
+// all terminal control sequences 
+// i.e. \033[0m is to "reset special formatting"
 
-    
+#define p(...) printf(__VA_ARGS__)
+// shortcut for printing stuff
+
+void char *Getcwd(char *buffer, size_t size) {
+    // pointer to pathname is returned to getcwd, NULL otherwose
+    if (NULL = getcwd(buffer, size)) {
+        perror(RED"getcwd failed"RST);
+    }
+}
+
+char *get_line(void) {
+    char *buffer; // character pointer
+    size_t bufsize;
+    char current_working_directory[BUFSIZ]; //bufsiz is like 1 kb macro
+
+    buffer = NULL; // getline "will take care of it"
+
+    Getcwd(cwd, sizeof(cwd));
+
+    // "are we interactive mode" or is this a script
+    // if (isatty(fileno(stdin))) {}
+
+    p("$<YEAAAAAAAAAAAAAAAAA> %s dsfjsdfshdfhs", buffer);
 
 
-    return 
+    // getline is gonna return the number of characters written excluding NUL terminator
+
+    // &buffer = address of buffer variable
+    if (getline(&buffer, &bufsize, stdin) == -1) // error handling
+    {
+        buffer = NULL; // printing NULL is causing a seg fault here since its a ptr to an empty string here
+        if (feof(stdin))
+            p(RED"[EOF]"RST);
+
+        else
+            p(RED"Getline failed"RST);
+    }
+    return buffer;
 }
 
 #endif
